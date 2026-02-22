@@ -579,10 +579,10 @@ export default function Home() {
                     },
                   }}
                 >
-                  {/* Base fill */}
+                  {/* Base fill — surface for a slightly brighter base than raw bg */}
                   <div
                     className="absolute inset-0"
-                    style={{ backgroundColor: cardTokens.bg }}
+                    style={{ backgroundColor: id === 'design' ? cardTokens.surface : cardTokens.bg }}
                   />
 
                   {id === 'photography' ? (
@@ -611,8 +611,8 @@ export default function Home() {
                     </svg>
                   ) : (
                     /*
-                      Design — diagonal crosshatch grid rotated 45°.
-                      Evokes graph paper, grid systems, structured layouts.
+                      Design — bold diagonal parallel stripes.
+                      Evokes editorial print, fashion, and brand identity.
                     */
                     <svg
                       className="absolute inset-0 w-full h-full"
@@ -620,17 +620,16 @@ export default function Home() {
                     >
                       <defs>
                         <pattern
-                          id="design-grid"
-                          width="36"
-                          height="36"
+                          id="design-stripes"
+                          width="22"
+                          height="22"
                           patternUnits="userSpaceOnUse"
-                          patternTransform="rotate(45)"
+                          patternTransform="rotate(-45)"
                         >
-                          <line x1="0" y1="0" x2="0" y2="36" stroke={cardTokens.accent} strokeWidth="0.75" opacity="0.22" />
-                          <line x1="0" y1="0" x2="36" y2="0" stroke={cardTokens.accent} strokeWidth="0.75" opacity="0.22" />
+                          <line x1="0" y1="0" x2="0" y2="22" stroke={cardTokens.accent} strokeWidth="2" opacity="0.32" />
                         </pattern>
                       </defs>
-                      <rect width="100%" height="100%" fill="url(#design-grid)" />
+                      <rect width="100%" height="100%" fill="url(#design-stripes)" />
                     </svg>
                   )}
                 </motion.div>

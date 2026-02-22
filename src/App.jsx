@@ -14,6 +14,7 @@ import { ThemeProvider } from './context/ThemeContext'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import WorldTransitionOverlay from './components/WorldTransitionOverlay'
+import SiteLoader from './components/SiteLoader'
 
 import Home        from './pages/Home'
 import About       from './pages/About'
@@ -44,6 +45,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <ThemeProvider>
+      <SiteLoader />
       <WorldTransitionOverlay />
       <div className="min-h-screen flex flex-col">
         <Nav />
