@@ -68,15 +68,14 @@ export default function Nav() {
       >
         <nav className="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
 
-          {/* ── Wordmark: stacked two lines ─────── */}
+          {/* ── Wordmark: single line ─────────────── */}
           <button
             onClick={handleWordmark}
-            className="font-display font-black uppercase leading-none tracking-tight transition-opacity hover:opacity-60 text-left"
+            className="font-display font-black uppercase leading-none tracking-tight transition-opacity hover:opacity-60"
             style={{ color: tokens.primary, fontSize: '2rem', letterSpacing: '-0.01em' }}
             aria-label="Go to homepage"
           >
-            <span className="block">Jemiah</span>
-            <span className="block" style={{ color: tokens.accent }}>Sius</span>
+            Jemiah <span style={{ color: tokens.accent }}>Sius</span>
           </button>
 
           {/* ── Desktop links ───────────────────── */}

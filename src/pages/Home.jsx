@@ -76,10 +76,10 @@ export default function Home() {
   // section background smoothly shifts toward that world's bg color.
   // null means: use the currently active world's bg (no shift).
   const [hoveredWorld, setHoveredWorld] = useState(null);
-  // Use accentDim instead of bg — it carries the world's hue visibly
-  // (bg values are near-black/white so the shift was barely noticeable)
+  // border sits between bg (invisible) and accentDim (too vibrant) —
+  // it carries each world's hue without overpowering the page.
   const hoveredBg = hoveredWorld
-    ? worlds[hoveredWorld][colorMode].accentDim
+    ? worlds[hoveredWorld][colorMode].border
     : tokens.bg;
 
   // Push the hover color to the whole page body, not just one section.
@@ -433,112 +433,88 @@ export default function Home() {
 
         return (
           <section className="max-w-7xl mx-auto px-6 md:px-10 py-16">
-
-            {/* Two-column grid — info left, video right */}
-            <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-
-              {/* ── Left: Talk info ── */}
-              <motion.div
-                initial={{ opacity: 0, x: -24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Eyebrow */}
+              <p
+                className="text-label mb-5 opacity-70"
+                style={{ color: tokens.accent }}
               >
-                {/* Eyebrow */}
-                <p
-                  className="text-label mb-5 opacity-70"
-                  style={{ color: tokens.accent }}
-                >
-                  Featured Talk
-                </p>
+                Featured Talk
+              </p>
 
-                {/* Talk title — Barlow Condensed, large */}
-                <h2
-                  className="font-display font-black uppercase tracking-tight leading-none mb-4 text-4xl md:text-6xl"
-                  style={{ color: tokens.primary }}
-                >
-                  {TALK.title}
-                </h2>
-
-                {/* Event + year */}
-                <p
-                  className="text-label opacity-40 mb-6"
-                  style={{ color: tokens.primary }}
-                >
-                  {TALK.event}
-                </p>
-
-                {/* Description */}
-                <p
-                  className="text-base leading-relaxed opacity-60 mb-8"
-                  style={{ color: tokens.primary }}
-                >
-                  {TALK.description}
-                </p>
-
-                {/* Watch link */}
-                <a
-                  href={TALK.watchUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-label border-b pb-0.5 transition-opacity hover:opacity-70"
-                  style={{
-                    color: tokens.accent,
-                    borderColor: tokens.accent,
-                  }}
-                >
-                  Watch the talk →
-                </a>
-              </motion.div>
-
-              {/* ── Right: Video embed or placeholder ── */}
-              <motion.div
-                initial={{ opacity: 0, x: 24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              {/* Talk title */}
+              <h2
+                className="font-display font-black uppercase tracking-tight leading-none mb-4 text-4xl md:text-6xl"
+                style={{ color: tokens.primary }}
               >
-                {/* Outer border wrapper */}
-                <div
-                  className="w-full overflow-hidden"
-                  style={{
-                    border: `1px solid ${tokens.border}`,
-                    borderRadius: '2px',
-                  }}
-                >
-                  {YOUTUBE_ID ? (
-                    /* ── YouTube iframe embed ── */
-                    /* aspect-video = 16:9. The iframe fills the container. */
-                    <div className="aspect-video">
-                      <iframe
-                        src={`https://www.youtube.com/embed/${YOUTUBE_ID}`}
-                        title={TALK.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        className="w-full h-full"
-                        style={{ border: 'none', display: 'block' }}
-                      />
-                    </div>
-                  ) : (
-                    /* ── Placeholder shown until a YouTube ID is added ── */
-                    <div
-                      className="aspect-video flex flex-col items-center justify-center gap-3"
-                      style={{ backgroundColor: tokens.surface }}
+                {TALK.title}
+              </h2>
+
+              {/* Event + year */}
+              <p
+                className="text-label opacity-40 mb-6"
+                style={{ color: tokens.primary }}
+              >
+                {TALK.event}
+              </p>
+
+              {/* Description */}
+              <p
+                className="text-base leading-relaxed opacity-60 mb-8 max-w-2xl"
+                style={{ color: tokens.primary }}
+              >
+                {TALK.description}
+              </p>
+
+              {/* Video embed or placeholder */}
+              <div
+                className="w-full overflow-hidden mb-8"
+                style={{ border: `1px solid ${tokens.border}`, borderRadius: '2px' }}
+              >
+                {YOUTUBE_ID ? (
+                  <div className="aspect-video">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${YOUTUBE_ID}`}
+                      title={TALK.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="w-full h-full"
+                      style={{ border: 'none', display: 'block' }}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className="aspect-video flex flex-col items-center justify-center gap-3"
+                    style={{ backgroundColor: tokens.surface }}
+                  >
+                    <p
+                      className="text-label opacity-25 text-center px-8 leading-relaxed"
+                      style={{ color: tokens.primary }}
                     >
-                      <p
-                        className="text-label opacity-25 text-center px-8 leading-relaxed"
-                        style={{ color: tokens.primary }}
-                      >
-                        ✏️ Add your YouTube embed ID
-                        <br />
-                        Set YOUTUBE_ID in Home.jsx
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
+                      ✏️ Add your YouTube embed ID
+                      <br />
+                      Set YOUTUBE_ID in Home.jsx
+                    </p>
+                  </div>
+                )}
+              </div>
 
-            </div>
+              {/* Watch link */}
+              <a
+                href={TALK.watchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-label border-b pb-0.5 transition-opacity hover:opacity-70"
+                style={{ color: tokens.accent, borderColor: tokens.accent }}
+              >
+                Watch the talk →
+              </a>
+            </motion.div>
           </section>
         );
       })()}
@@ -592,37 +568,70 @@ export default function Home() {
                   cursor: 'pointer',
                 }}
               >
-                {/* ── Background: photo or gradient fallback ── */}
-                {/*
-                  The image lives in its own div so we can scale it independently
-                  of the text overlay — the text stays sharp while the photo zooms.
-                */}
+                {/* ── Background: geometric pattern ── */}
                 <motion.div
                   className="absolute inset-0"
                   variants={{
                     cardResting: { scale: 1 },
-                    // Slow, subtle zoom on hover
                     cardHovered: {
                       scale: 1.06,
                       transition: { duration: 0.8, ease: 'easeOut' },
                     },
                   }}
                 >
-                  {cardTokens.heroImage ? (
-                    <img
-                      src={cardTokens.heroImage}
-                      alt={title}
-                      className="w-full h-full object-cover"
-                      draggable={false}
-                    />
+                  {/* Base fill */}
+                  <div
+                    className="absolute inset-0"
+                    style={{ backgroundColor: cardTokens.bg }}
+                  />
+
+                  {id === 'photography' ? (
+                    /*
+                      Photography — concentric rings offset to upper-right.
+                      Evokes a camera lens / aperture / viewfinder.
+                    */
+                    <svg
+                      className="absolute inset-0 w-full h-full"
+                      viewBox="0 0 600 520"
+                      preserveAspectRatio="xMidYMid slice"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {[28, 66, 110, 160, 218, 283, 356, 437, 527].map((r, i) => (
+                        <circle
+                          key={r}
+                          cx="390"
+                          cy="175"
+                          r={r}
+                          fill="none"
+                          stroke={cardTokens.accent}
+                          strokeWidth="1"
+                          opacity={Math.max(0.05, 0.24 - i * 0.022)}
+                        />
+                      ))}
+                    </svg>
                   ) : (
-                    /* Fallback gradient when no heroImage is set */
-                    <div
-                      className="w-full h-full"
-                      style={{
-                        background: `linear-gradient(135deg, ${cardTokens.surface} 0%, ${cardTokens.accentDim} 100%)`,
-                      }}
-                    />
+                    /*
+                      Design — diagonal crosshatch grid rotated 45°.
+                      Evokes graph paper, grid systems, structured layouts.
+                    */
+                    <svg
+                      className="absolute inset-0 w-full h-full"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <defs>
+                        <pattern
+                          id="design-grid"
+                          width="36"
+                          height="36"
+                          patternUnits="userSpaceOnUse"
+                          patternTransform="rotate(45)"
+                        >
+                          <line x1="0" y1="0" x2="0" y2="36" stroke={cardTokens.accent} strokeWidth="0.75" opacity="0.22" />
+                          <line x1="0" y1="0" x2="36" y2="0" stroke={cardTokens.accent} strokeWidth="0.75" opacity="0.22" />
+                        </pattern>
+                      </defs>
+                      <rect width="100%" height="100%" fill="url(#design-grid)" />
+                    </svg>
                   )}
                 </motion.div>
 
