@@ -158,7 +158,7 @@ export default function SiteLoader() {
           userSelect: 'none',
         }}
       >
-        {/* JEMIAH — drops in from below, starts light, inverts to dark on flood */}
+        {/* JEMIAH — drops in from below, all white, inverts to dark on flood */}
         <motion.div
           animate={jemiahControls}
           initial={{ opacity: 0, y: 40, color: FG }}
@@ -166,7 +166,7 @@ export default function SiteLoader() {
             fontFamily: '"Barlow Condensed", sans-serif',
             fontWeight: 900,
             textTransform: 'uppercase',
-            fontSize: 'clamp(5rem, 18vw, 14rem)',
+            fontSize: 'clamp(3rem, 10vw, 8rem)',
             letterSpacing: '-0.02em',
             lineHeight: 0.9,
           }}
@@ -174,15 +174,15 @@ export default function SiteLoader() {
           JEMIAH
         </motion.div>
 
-        {/* SIUS — drops in 80ms after JEMIAH, starts accent, inverts to dark on flood */}
+        {/* SIUS — drops in 80ms after JEMIAH, also all white, inverts to dark on flood */}
         <motion.div
           animate={siusControls}
-          initial={{ opacity: 0, y: 40, color: ACCENT }}
+          initial={{ opacity: 0, y: 40, color: FG }}
           style={{
             fontFamily: '"Barlow Condensed", sans-serif',
             fontWeight: 900,
             textTransform: 'uppercase',
-            fontSize: 'clamp(5rem, 18vw, 14rem)',
+            fontSize: 'clamp(3rem, 10vw, 8rem)',
             letterSpacing: '-0.02em',
             lineHeight: 0.9,
           }}

@@ -88,9 +88,13 @@ export default function Home() {
   // lets the original CSS variable rule snap back in.
   useEffect(() => {
     document.body.style.transition = 'background-color 0.6s ease';
-    document.body.style.backgroundColor = hoveredWorld ? hoveredBg : '';
+    document.body.style.backgroundColor = hoveredWorld
+      ? hoveredBg
+      : '';
     // On unmount (navigating away), remove the override so other pages aren't affected.
-    return () => { document.body.style.backgroundColor = ''; };
+    return () => {
+      document.body.style.backgroundColor = '';
+    };
   }, [hoveredWorld, hoveredBg]);
 
   return (
@@ -160,7 +164,6 @@ export default function Home() {
 
         {/* Hero text — left side, over the photo gradient */}
         <div className="relative z-10 flex flex-col justify-end min-h-screen px-6 md:px-10 pb-16 pt-32 max-w-7xl mx-auto">
-
           {/* Color mode switcher — same max-w-7xl container as nav, so x-axis matches */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -352,10 +355,10 @@ export default function Home() {
       {/* ✏️ EDIT: Update each item's value to reflect what's current for you */}
       {(() => {
         const STATUS_ITEMS = [
-          { label: 'Spinning',      value: 'Afrobeats & Amapiano' },   // ✏️ EDIT: what you're DJing
-          { label: 'Based in',      value: 'Miami, FL' },
-          { label: 'Last talked at', value: '— Add conference name' }, // ✏️ EDIT: your last keynote
-          { label: 'Shooting with', value: '— Add your camera' },      // ✏️ EDIT: your current camera
+          { label: 'Spinning', value: 'Hip Hop, R&B, & Amapiano' }, // ✏️ EDIT: what you're DJing
+          { label: 'Based in', value: 'Miami, FL' },
+          { label: 'Last talked at', value: 'Microsoft Ignite' }, // ✏️ EDIT: your last keynote
+          { label: 'Shooting with', value: 'Sony a7R IV ' }, // ✏️ EDIT: your current camera
         ];
 
         return (
@@ -378,9 +381,10 @@ export default function Home() {
                   className="px-6 md:px-10 py-8 flex flex-col gap-2"
                   style={{
                     // Vertical divider between items (right border on all except the last in each row)
-                    borderRight: i % 2 === 0 || i === 0
-                      ? `1px solid ${tokens.border}`
-                      : undefined,
+                    borderRight:
+                      i % 2 === 0 || i === 0
+                        ? `1px solid ${tokens.border}`
+                        : undefined,
                     // On desktop, apply border to all but the last item
                     ...(i < STATUS_ITEMS.length - 1
                       ? { borderRight: `1px solid ${tokens.border}` }
@@ -424,11 +428,11 @@ export default function Home() {
 
         // ✏️ EDIT: Update these fields with your actual talk details.
         const TALK = {
-          title: 'Your Talk Title Goes Here',             // ✏️ EDIT
-          event: 'Conference Name · 2024',                // ✏️ EDIT
+          title: 'Your Talk Title Goes Here', // ✏️ EDIT
+          event: 'Conference Name · 2024', // ✏️ EDIT
           description:
             'A short 1–2 sentence description of what this talk was about and why it mattered. Replace this with your own words.', // ✏️ EDIT
-          watchUrl: '#',                                  // ✏️ EDIT: link to recording or talk page
+          watchUrl: '#', // ✏️ EDIT: link to recording or talk page
         };
 
         return (
@@ -474,7 +478,10 @@ export default function Home() {
               {/* Video embed or placeholder */}
               <div
                 className="w-full overflow-hidden mb-8"
-                style={{ border: `1px solid ${tokens.border}`, borderRadius: '2px' }}
+                style={{
+                  border: `1px solid ${tokens.border}`,
+                  borderRadius: '2px',
+                }}
               >
                 {YOUTUBE_ID ? (
                   <div className="aspect-video">
@@ -510,7 +517,10 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-label border-b pb-0.5 transition-opacity hover:opacity-70"
-                style={{ color: tokens.accent, borderColor: tokens.accent }}
+                style={{
+                  color: tokens.accent,
+                  borderColor: tokens.accent,
+                }}
               >
                 Watch the talk →
               </a>
@@ -545,7 +555,10 @@ export default function Home() {
             // Resolve this world's own tokens for the current color mode.
             // Cards always show their own world's palette, not the active world's.
             const worldDef = worlds[id];
-            const cardTokens = { ...worldDef[colorMode], heroImage: worldDef.heroImage };
+            const cardTokens = {
+              ...worldDef[colorMode],
+              heroImage: worldDef.heroImage,
+            };
 
             return (
               /*
@@ -560,7 +573,10 @@ export default function Home() {
                 whileHover="cardHovered"
                 onHoverStart={() => setHoveredWorld(id)}
                 onHoverEnd={() => setHoveredWorld(null)}
-                onClick={() => { setWorld(id); navigate(to); }}
+                onClick={() => {
+                  setWorld(id);
+                  navigate(to);
+                }}
                 // Mobile: full width stacked. Desktop: exactly half the window each.
                 className="relative w-full md:w-1/2 overflow-hidden"
                 style={{
@@ -582,7 +598,12 @@ export default function Home() {
                   {/* Base fill — surface for a slightly brighter base than raw bg */}
                   <div
                     className="absolute inset-0"
-                    style={{ backgroundColor: id === 'design' ? cardTokens.surface : cardTokens.bg }}
+                    style={{
+                      backgroundColor:
+                        id === 'design'
+                          ? cardTokens.surface
+                          : cardTokens.bg,
+                    }}
                   />
 
                   {id === 'photography' ? (
@@ -596,7 +617,9 @@ export default function Home() {
                       preserveAspectRatio="xMidYMid slice"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      {[28, 66, 110, 160, 218, 283, 356, 437, 527].map((r, i) => (
+                      {[
+                        28, 66, 110, 160, 218, 283, 356, 437, 527,
+                      ].map((r, i) => (
                         <circle
                           key={r}
                           cx="390"
@@ -626,10 +649,22 @@ export default function Home() {
                           patternUnits="userSpaceOnUse"
                           patternTransform="rotate(-45)"
                         >
-                          <line x1="0" y1="0" x2="0" y2="22" stroke={cardTokens.accent} strokeWidth="2" opacity="0.32" />
+                          <line
+                            x1="0"
+                            y1="0"
+                            x2="0"
+                            y2="22"
+                            stroke={cardTokens.accent}
+                            strokeWidth="2"
+                            opacity="0.32"
+                          />
                         </pattern>
                       </defs>
-                      <rect width="100%" height="100%" fill="url(#design-stripes)" />
+                      <rect
+                        width="100%"
+                        height="100%"
+                        fill="url(#design-stripes)"
+                      />
                     </svg>
                   )}
                 </motion.div>
@@ -656,7 +691,6 @@ export default function Home() {
 
                 {/* ── Text content ── */}
                 <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10 pointer-events-none">
-
                   {/* Small "World" eyebrow label */}
                   <p
                     className="text-label mb-3 opacity-70"
@@ -693,7 +727,10 @@ export default function Home() {
                       cardHovered: {
                         opacity: 1,
                         y: 0,
-                        transition: { duration: 0.25, ease: 'easeOut' },
+                        transition: {
+                          duration: 0.25,
+                          ease: 'easeOut',
+                        },
                       },
                     }}
                   >
@@ -705,7 +742,6 @@ export default function Home() {
           })}
         </div>
       </section>
-
     </PageTransition>
   );
 }
