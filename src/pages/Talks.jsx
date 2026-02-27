@@ -8,38 +8,10 @@
 import { motion } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 import PageTransition from '../components/PageTransition'
+import content from '../content'
 
-// ✏️ EDIT: Replace with your actual talks
-const TALKS_DATA = [
-  {
-    year: '2024',
-    title: '— Add your talk title here',
-    event: 'Conference Name',
-    location: 'City, Country',
-    link: null,
-  },
-  {
-    year: '2024',
-    title: '— Add your talk title here',
-    event: 'Conference Name',
-    location: 'City, Country',
-    link: null,
-  },
-  {
-    year: '2023',
-    title: '— Add your talk title here',
-    event: 'Conference Name',
-    location: 'City, Country',
-    link: null,
-  },
-  {
-    year: '2023',
-    title: '— Add your talk title here',
-    event: 'Conference Name',
-    location: 'City, Country',
-    link: null,
-  },
-]
+// ✏️ EDIT: Update talks in src/content.js
+const TALKS_DATA = content.talks
 
 export default function Talks() {
   const { tokens } = useTheme()

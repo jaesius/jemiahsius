@@ -9,43 +9,11 @@
 import { motion } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 import PageTransition from '../components/PageTransition'
+import content from '../content'
 
-// ✏️ EDIT: Replace with your actual experience
-const EXPERIENCE = [
-  {
-    role: 'Vice President, Developer Relations',
-    company: 'New Relic',
-    period: '20XX — Present',
-    description:
-      "Leading Developer Relations, Technical Marketing, and Demo Engineering. Building programs that connect the global developer community with New Relic's observability platform.",
-  },
-  {
-    role: '— Add previous role',
-    company: 'Company Name',
-    period: '20XX — 20XX',
-    description: 'Brief description of your responsibilities and impact.',
-  },
-  {
-    role: '— Add previous role',
-    company: 'Company Name',
-    period: '20XX — 20XX',
-    description: 'Brief description of your responsibilities and impact.',
-  },
-]
-
-// ✏️ EDIT: Replace with your actual skills
-const SKILLS = [
-  'Developer Relations',
-  'Technical Marketing',
-  'Public Speaking',
-  'Community Building',
-  'Demo Engineering',
-  'Observability',
-  'JavaScript',
-  'React',
-  'Photography',
-  'Art Direction',
-]
+// ✏️ EDIT: Update experience and skills in src/content.js
+const EXPERIENCE = content.resume.experience
+const SKILLS     = content.resume.skills
 
 export default function Resume() {
   const { tokens } = useTheme()
@@ -67,9 +35,9 @@ export default function Resume() {
               Experience &<br />background.
             </h1>
           </div>
-          {/* ✏️ EDIT: Replace href with your actual PDF link */}
+          {/* ✏️ EDIT: Set resume.pdfPath in src/content.js */}
           <a
-            href="/resume.pdf"
+            href={content.resume.pdfPath}
             download
             className="text-label px-6 py-3 border transition-all duration-200 hover:opacity-70 self-start sm:self-auto"
             style={{

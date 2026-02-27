@@ -14,6 +14,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import PageTransition from '../components/PageTransition';
 import ColorModeSwitcher from '../components/ColorModeSwitcher';
+import content from '../content';
 
 // ── Animation variants ───────────────────────────────────
 const container = {
@@ -182,7 +183,7 @@ export default function Home() {
             className="text-label mb-6 opacity-60"
             style={{ color: tokens.accent }}
           >
-            VP Developer Relations · New Relic
+            {content.role}
           </motion.p>
 
           {/* Staggered headline */}
@@ -191,12 +192,7 @@ export default function Home() {
             initial="hidden"
             animate="show"
           >
-            {[
-              'Building',
-              'at the intersection',
-              'of technology',
-              'and culture.',
-            ].map((line, i) => (
+            {content.tagline.split('\n').map((line, i) => (
               <div key={i} className="overflow-hidden">
                 <motion.h1
                   variants={item}
@@ -352,14 +348,9 @@ export default function Home() {
         ✏️ EDIT: Update the four values below to reflect your current reality.
       */}
 
-      {/* ✏️ EDIT: Update each item's value to reflect what's current for you */}
+      {/* ✏️ EDIT: Update currently items in src/content.js */}
       {(() => {
-        const STATUS_ITEMS = [
-          { label: 'Spinning', value: 'Hip Hop, R&B, & Amapiano' }, // ✏️ EDIT: what you're DJing
-          { label: 'Based in', value: 'Miami, FL' },
-          { label: 'Last talked at', value: 'Microsoft Ignite' }, // ✏️ EDIT: your last keynote
-          { label: 'Shooting with', value: 'Sony a7R IV ' }, // ✏️ EDIT: your current camera
-        ];
+        const STATUS_ITEMS = content.currently;
 
         return (
           <motion.section
@@ -421,18 +412,13 @@ export default function Home() {
       */}
 
       {(() => {
-        // ✏️ EDIT: Paste your YouTube video ID here (the part after ?v= in the URL).
-        // Example: 'dQw4w9WgXcQ' from https://www.youtube.com/watch?v=dQw4w9WgXcQ
-        // Set to null (no quotes) to show the placeholder box instead.
-        const YOUTUBE_ID = null;
-
-        // ✏️ EDIT: Update these fields with your actual talk details.
+        // ✏️ EDIT: Update featuredTalk in src/content.js
+        const YOUTUBE_ID = content.featuredTalk.youtubeId;
         const TALK = {
-          title: 'Your Talk Title Goes Here', // ✏️ EDIT
-          event: 'Conference Name · 2024', // ✏️ EDIT
-          description:
-            'A short 1–2 sentence description of what this talk was about and why it mattered. Replace this with your own words.', // ✏️ EDIT
-          watchUrl: '#', // ✏️ EDIT: link to recording or talk page
+          title:       content.featuredTalk.title,
+          event:       `${content.featuredTalk.event} · ${content.featuredTalk.year}`,
+          description: content.featuredTalk.description,
+          watchUrl:    content.featuredTalk.watchUrl,
         };
 
         return (

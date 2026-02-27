@@ -13,16 +13,10 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 import PageTransition from '../components/PageTransition'
+import content from '../content'
 
-// ✏️ EDIT: Replace with your actual photos
-const PHOTO_GRID = [
-  { src: null, caption: 'Add photo 01' },
-  { src: null, caption: 'Add photo 02' },
-  { src: null, caption: 'Add photo 03' },
-  { src: null, caption: 'Add photo 04' },
-  { src: null, caption: 'Add photo 05' },
-  { src: null, caption: 'Add photo 06' },
-]
+// ✏️ EDIT: Update photography.grid in src/content.js
+const PHOTO_GRID = content.photography.grid
 
 const container = {
   hidden: {},
@@ -63,9 +57,8 @@ export default function Photography() {
           className="text-base opacity-50 mb-20 max-w-xl"
           style={{ color: tokens.primary }}
         >
-          {/* ✏️ EDIT: Add your photography statement */}
-          Photography is how I slow down. Each frame is a question I'm trying to answer —
-          about light, stillness, and what a moment actually feels like.
+          {/* ✏️ EDIT: Update photography.statement in src/content.js */}
+          {content.photography.statement}
         </motion.p>
 
         {/* ── Photo Grid ──────────────────────── */}

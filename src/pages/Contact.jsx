@@ -17,6 +17,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 import PageTransition from '../components/PageTransition'
+import content from '../content'
 
 const INITIAL_FORM = { name: '', email: '', subject: '', message: '' }
 
@@ -196,11 +197,11 @@ export default function Contact() {
             </div>
 
             <div className="space-y-4">
-              {/* ✏️ EDIT: Update with your real social/contact links */}
+              {/* ✏️ EDIT: Update email and social links in src/content.js */}
               {[
-                { label: 'Email',    value: 'hello@jemiahsius.com', href: 'mailto:hello@jemiahsius.com' },
-                { label: 'LinkedIn', value: '/in/jemiahsius',       href: 'https://linkedin.com/in/jemiahsius' },
-                { label: 'Twitter',  value: '@jemiahsius',          href: 'https://twitter.com/jemiahsius' },
+                { label: 'Email',    value: content.email,                                      href: `mailto:${content.email}` },
+                { label: 'LinkedIn', value: content.social.linkedin.replace('https://', ''),    href: content.social.linkedin },
+                { label: 'Twitter',  value: `@${content.social.twitter.split('/').pop()}`,      href: content.social.twitter },
               ].map(({ label, value, href }) => (
                 <div
                   key={label}

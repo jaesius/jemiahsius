@@ -12,31 +12,10 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 import PageTransition from '../components/PageTransition'
+import content from '../content'
 
-// ✏️ EDIT: Replace with your actual design projects
-const PROJECTS = [
-  {
-    title: 'Add Project Title',
-    category: 'Brand / Visual',
-    year: '2024',
-    description: 'Brief description of this design project and what you were exploring.',
-    src: null,
-  },
-  {
-    title: 'Add Project Title',
-    category: 'UI / Product',
-    year: '2024',
-    description: 'Brief description of this design project and what you were exploring.',
-    src: null,
-  },
-  {
-    title: 'Add Project Title',
-    category: 'Typography',
-    year: '2023',
-    description: 'Brief description of this design project and what you were exploring.',
-    src: null,
-  },
-]
+// ✏️ EDIT: Update design.projects in src/content.js
+const PROJECTS = content.design.projects
 
 export default function Design() {
   const { tokens, setWorld } = useTheme()
@@ -67,9 +46,8 @@ export default function Design() {
           className="text-base opacity-50 mb-20 max-w-xl"
           style={{ color: tokens.primary }}
         >
-          {/* ✏️ EDIT: Add your design statement */}
-          Design is decision-making made visible. I'm drawn to the tension between
-          constraint and freedom — the moment a system becomes expressive.
+          {/* ✏️ EDIT: Update design.statement in src/content.js */}
+          {content.design.statement}
         </motion.p>
 
         {/* ── Projects ─────────────────────────── */}

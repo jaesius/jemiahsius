@@ -42,7 +42,8 @@ describe('ThemeContext', () => {
         <ThemeReader />
       </ThemeProvider>
     )
-    expect(screen.getByTestId('accent').textContent).toBe(WORLDS.default.accent)
+    // WORLDS now has dark/light sub-objects; default colorMode is 'dark'
+    expect(screen.getByTestId('accent').textContent).toBe(WORLDS.default.dark.accent)
   })
 
   it('switches world and updates tokens correctly', async () => {
@@ -58,7 +59,7 @@ describe('ThemeContext', () => {
     })
 
     expect(screen.getByTestId('world').textContent).toBe('photography')
-    expect(screen.getByTestId('accent').textContent).toBe(WORLDS.photography.accent)
+    expect(screen.getByTestId('accent').textContent).toBe(WORLDS.photography.dark.accent)
   })
 
   it('throws when useTheme is used outside provider', () => {

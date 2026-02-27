@@ -23,14 +23,15 @@ import {
   useEffect,
   useCallback,
 } from 'react';
+import content from '../content';
 
 // ── World Definitions ────────────────────────────────────
 export const WORLDS = {
   default: {
     id: 'default',
     label: 'Jemiah Sius',
-    // ✏️ EDIT: Replace with your actual portrait photo path e.g. '/photos/portrait-default.jpg'
-    heroImage: '/photos/heroImage.png',
+    // ✏️ EDIT: Set heroImages.default in src/content.js
+    heroImage: content.heroImages.default,
     dark: {
       bg: '#0A0A0B',
       surface: '#111114',
@@ -55,8 +56,8 @@ export const WORLDS = {
   photography: {
     id: 'photography',
     label: 'Photography',
-    // ✏️ EDIT: Replace with a photo that fits the photography world
-    heroImage: '/photos/heroImage.png',
+    // ✏️ EDIT: Set heroImages.photography in src/content.js
+    heroImage: content.heroImages.photography,
     dark: {
       // Deep warm black — like a darkroom
       bg: '#0D0800',
@@ -83,8 +84,8 @@ export const WORLDS = {
   design: {
     id: 'design',
     label: 'Design',
-    // ✏️ EDIT: Replace with a photo that fits the design world
-    heroImage: '/photos/heroImage.png',
+    // ✏️ EDIT: Set heroImages.design in src/content.js
+    heroImage: content.heroImages.design,
     dark: {
       // Deep purple-black — editorial fashion feel
       bg: '#0A000F',

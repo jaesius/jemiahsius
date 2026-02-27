@@ -35,3 +35,6 @@ yarn-error.log*
 
 # Vercel
 .vercel
+
+# Personal content — copy content.example.js → content.js and fill in your details
+src/content.js

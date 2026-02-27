@@ -23,7 +23,9 @@ function renderNav(initialPath = '/') {
 describe('Nav', () => {
   it('renders the site wordmark', () => {
     renderNav()
-    expect(screen.getByText('Jemiah Sius')).toBeInTheDocument()
+    // Wordmark is "Jemiah <span>Sius</span>" — text spans two DOM nodes,
+    // so match via the button's aria-label instead.
+    expect(screen.getByRole('button', { name: 'Go to homepage' })).toBeInTheDocument()
   })
 
   it('renders all main navigation links', () => {

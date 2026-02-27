@@ -22,6 +22,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
+import content from '../content';
 
 // ── Hardcoded default world dark tokens ──────────────────
 // Mirrors WORLDS.default.dark in ThemeContext.jsx
@@ -158,7 +159,7 @@ export default function SiteLoader() {
           userSelect: 'none',
         }}
       >
-        {/* JEMIAH — drops in from below, all white, inverts to dark on flood */}
+        {/* First name — drops in from below, all white, inverts to dark on flood */}
         <motion.div
           animate={jemiahControls}
           initial={{ opacity: 0, y: 40, color: FG }}
@@ -171,10 +172,10 @@ export default function SiteLoader() {
             lineHeight: 0.9,
           }}
         >
-          JEMIAH
+          {content.name.first.toUpperCase()}
         </motion.div>
 
-        {/* SIUS — drops in 80ms after JEMIAH, also all white, inverts to dark on flood */}
+        {/* Last name — drops in 80ms after first name, also all white, inverts to dark on flood */}
         <motion.div
           animate={siusControls}
           initial={{ opacity: 0, y: 40, color: FG }}
@@ -187,7 +188,7 @@ export default function SiteLoader() {
             lineHeight: 0.9,
           }}
         >
-          SIUS
+          {content.name.last.toUpperCase()}
         </motion.div>
       </div>
     </motion.div>

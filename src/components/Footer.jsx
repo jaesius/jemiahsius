@@ -7,11 +7,13 @@
  */
 
 import { useTheme } from '../context/ThemeContext'
+import content from '../content'
 
+// ✏️ EDIT: Update social links in src/content.js
 const SOCIALS = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/jemiahsius' },
-  { label: 'Twitter',  href: 'https://twitter.com/jemiahsius' },
-  { label: 'GitHub',   href: 'https://github.com/jemiahsius' },
+  { label: 'LinkedIn', href: content.social.linkedin },
+  { label: 'Twitter',  href: content.social.twitter },
+  { label: 'GitHub',   href: content.social.github },
 ]
 
 export default function Footer() {
@@ -28,7 +30,7 @@ export default function Footer() {
           className="text-label opacity-40"
           style={{ color: tokens.primary }}
         >
-          © {year} Jemiah Sius
+          © {year} {content.name.full}
         </p>
 
         <div className="flex items-center gap-6">

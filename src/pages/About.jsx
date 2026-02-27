@@ -8,6 +8,7 @@
 import { motion } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 import PageTransition from '../components/PageTransition'
+import content from '../content'
 
 export default function About() {
   const { tokens } = useTheme()
@@ -37,24 +38,12 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="space-y-6"
           >
-            <p className="text-lg leading-relaxed opacity-70" style={{ color: tokens.primary }}>
-              {/* ✏️ EDIT: Replace with your real bio */}
-              I'm Jemiah Sius — Vice President of Developer Relations, Technical Marketing,
-              and Demo Engineering at New Relic. I spend my days connecting developers with
-              the tools, ideas, and communities that help them build better software.
-            </p>
-            <p className="text-lg leading-relaxed opacity-70" style={{ color: tokens.primary }}>
-              {/* ✏️ EDIT: Replace with your real bio */}
-              But I've always believed that the best technical communicators are also artists.
-              Photography taught me how to frame a story. DJing taught me how to read a room.
-              Design taught me that the experience is the product.
-            </p>
-            <p className="text-lg leading-relaxed opacity-70" style={{ color: tokens.primary }}>
-              {/* ✏️ EDIT: Replace with your real bio */}
-              I give keynotes at major developer conferences, lead teams that build demos
-              people actually want to watch, and constantly look for the intersection
-              where technology becomes culture.
-            </p>
+            {/* ✏️ EDIT: Update bio paragraphs in src/content.js */}
+            {content.about.bio.map((paragraph, i) => (
+              <p key={i} className="text-lg leading-relaxed opacity-70" style={{ color: tokens.primary }}>
+                {paragraph}
+              </p>
+            ))}
           </motion.div>
 
           {/* ── Quick facts ──────────────────── */}
@@ -65,13 +54,8 @@ export default function About() {
             className="space-y-px"
             style={{ backgroundColor: tokens.border }}
           >
-            {[
-              { label: 'Current Role',  value: 'VP Developer Relations · New Relic' },
-              { label: 'Focus Areas',   value: 'DevRel, Technical Marketing, Demo Eng' },
-              { label: 'Based in',      value: '— ✏️ Add your location' },
-              { label: 'Hobbies',       value: 'Photography, DJing, Art & Design' },
-              { label: 'On the decks',  value: '— ✏️ Add your DJ alias or genre' },
-            ].map(({ label, value }) => (
+            {/* ✏️ EDIT: Update quickFacts in src/content.js */}
+            {content.about.quickFacts.map(({ label, value }) => (
               <div
                 key={label}
                 className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6 p-5"

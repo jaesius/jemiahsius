@@ -28,8 +28,9 @@ describe('Home page', () => {
 
   it('renders world entry point links', () => {
     renderHome()
-    expect(screen.getByText('Photography')).toBeInTheDocument()
-    expect(screen.getByText('Design')).toBeInTheDocument()
+    // Multiple elements contain these strings (marquee + card headings), so use getAllByText
+    expect(screen.getAllByText('Photography').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('Design').length).toBeGreaterThan(0)
   })
 
   it('renders the About teaser link', () => {
