@@ -30,15 +30,11 @@ export default function CurrentlyStrip() {
         {items.map(({ label, value }, i) => (
           <div
             key={label}
-            className="px-6 md:px-10 py-8 flex flex-col gap-2"
+            className={`px-6 md:px-10 py-8 flex flex-col gap-2 ${
+              i % 2 === 0 ? 'border-r' : ''
+            } ${i < items.length - 1 ? 'md:border-r' : ''}`}
             style={{
-              // On desktop (4-col): border on all except last item
-              // On mobile (2-col): border on odd-index items (left column) only
-              // CSS grid handles the layout; we apply borders via inline style
-              borderRight:
-                i < items.length - 1
-                  ? `1px solid ${tokens.border}`
-                  : undefined,
+              borderColor: tokens.border,
             }}
           >
             <p

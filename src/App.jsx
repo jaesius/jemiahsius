@@ -31,7 +31,7 @@ function AnimatedRoutes() {
 
   return (
     <AnimatePresence mode="wait">
-      <Suspense fallback={null}>
+      <Suspense fallback={<div className="min-h-screen" />}>
       <Routes location={location} key={location.pathname}>
         <Route path="/"            element={<Home />} />
         <Route path="/about"       element={<About />} />

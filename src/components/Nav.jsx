@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react'
 import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
+import content from '../content'
 import ColorModeSwitcher from './ColorModeSwitcher'
 
 const MAIN_LINKS = [
@@ -76,7 +77,7 @@ export default function Nav() {
             style={{ color: tokens.primary, fontSize: '2rem', letterSpacing: '-0.01em' }}
             aria-label="Go to homepage"
           >
-            Jemiah <span style={{ color: tokens.accent }}>Sius</span>
+            {content.name.first} <span style={{ color: tokens.accent }}>{content.name.last}</span>
           </button>
 
           {/* ── Desktop links ───────────────────── */}

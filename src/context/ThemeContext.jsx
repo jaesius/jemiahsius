@@ -119,7 +119,10 @@ export function ThemeProvider({ children }) {
   const [world, setWorldState] = useState('default');
   // Lazy-init from localStorage so the correct mode is known before first paint
   const [colorMode, setColorMode] = useState(
-    () => localStorage.getItem('color-mode') || 'dark',
+    () => {
+      try { return localStorage.getItem('color-mode') || 'dark'; }
+      catch { return 'dark'; }
+    },
   );
 
   // Derive the flat token set for a given world + mode
@@ -168,16 +171,19 @@ export function ThemeProvider({ children }) {
     (worldId) => {
       if (!WORLDS[worldId]) return;
       setWorldState(worldId);
-      applyWorld(worldId, colorMode);
+      setColorMode((currentMode) => {
+        applyWorld(worldId, currentMode);
+        return currentMode;
+      });
     },
-    [applyWorld, colorMode],
+    [applyWorld],
   );
 
   // Toggle between dark and light, persist to localStorage
   const toggleColorMode = useCallback(() => {
     setColorMode((prev) => {
       const next = prev === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('color-mode', next);
+      try { localStorage.setItem('color-mode', next); } catch {}
       // Use the current world from state closure — world is stable here
       setWorldState((currentWorld) => {
         applyWorld(currentWorld, next);

@@ -38,7 +38,10 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 export default function SiteLoader() {
   // Evaluate sessionStorage synchronously so we never even mount the DOM nodes
   // if this session has already seen the loader.
-  const [skip] = useState(() => !!sessionStorage.getItem('loader-shown'));
+  const [skip] = useState(() => {
+    try { return !!sessionStorage.getItem('loader-shown'); }
+    catch { return false; }
+  });
   const [done, setDone] = useState(false);
 
   // Independent animation controls for each layer so we can sequence precisely.
@@ -105,7 +108,7 @@ export default function SiteLoader() {
       });
 
       // ── Cleanup ────────────────────────────────────────────
-      sessionStorage.setItem('loader-shown', 'true');
+      try { sessionStorage.setItem('loader-shown', 'true'); } catch {}
       document.body.style.overflow = '';
       setDone(true);
     }

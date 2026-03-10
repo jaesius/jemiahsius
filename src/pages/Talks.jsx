@@ -60,7 +60,7 @@ export default function Talks() {
                 <div className="space-y-px" style={{ backgroundColor: tokens.border }}>
                   {talks.map((talk, i) => (
                     <div
-                      key={i}
+                      key={`${talk.title}-${talk.event}`}
                       className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-6 group transition-colors duration-200"
                       style={{ backgroundColor: tokens.surface }}
                     >

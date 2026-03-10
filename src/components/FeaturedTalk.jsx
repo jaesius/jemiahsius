@@ -12,6 +12,7 @@ import { EASE_OUT_EXPO } from '../utils/motion';
 export default function FeaturedTalk() {
   const { tokens } = useTheme();
   const { youtubeId, title, event, year, description, watchUrl } = content.featuredTalk;
+  const YOUTUBE_ID_RE = /^[a-zA-Z0-9_-]{11}$/;
   const eventLine = `${event} · ${year}`;
 
   return (
@@ -57,7 +58,7 @@ export default function FeaturedTalk() {
             borderRadius: '2px',
           }}
         >
-          {youtubeId ? (
+          {youtubeId && YOUTUBE_ID_RE.test(youtubeId) ? (
             <div className="aspect-video">
               <iframe
                 src={`https://www.youtube.com/embed/${youtubeId}`}
@@ -83,18 +84,20 @@ export default function FeaturedTalk() {
           )}
         </div>
 
-        <a
-          href={watchUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block text-label border-b pb-0.5 transition-opacity hover:opacity-70"
-          style={{
-            color: tokens.accent,
-            borderColor: tokens.accent,
-          }}
-        >
-          Watch the talk →
-        </a>
+        {watchUrl && (
+          <a
+            href={watchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-label border-b pb-0.5 transition-opacity hover:opacity-70"
+            style={{
+              color: tokens.accent,
+              borderColor: tokens.accent,
+            }}
+          >
+            Watch the talk →
+          </a>
+        )}
       </motion.div>
     </section>
   );

@@ -9,6 +9,7 @@
  * Each item: { src: '/photos/filename.jpg', caption: '...' }
  */
 
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
@@ -31,6 +32,7 @@ const photoItem = {
 
 export default function Photography() {
   const { tokens, setWorld } = useTheme()
+  useEffect(() => { setWorld('photography'); }, [setWorld]);
 
   return (
     <PageTransition isWorld>

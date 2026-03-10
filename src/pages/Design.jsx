@@ -8,6 +8,7 @@
  * ✏️ Replace PROJECTS with your actual design work.
  */
 
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
@@ -19,6 +20,7 @@ const PROJECTS = content.design.projects
 
 export default function Design() {
   const { tokens, setWorld } = useTheme()
+  useEffect(() => { setWorld('design'); }, [setWorld]);
 
   return (
     <PageTransition isWorld>
@@ -54,7 +56,7 @@ export default function Design() {
         <div className="space-y-4">
           {PROJECTS.map((project, i) => (
             <motion.div
-              key={i}
+              key={project.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 + 0.2 }}
