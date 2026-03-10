@@ -32,13 +32,13 @@ export default function CurrentlyStrip() {
             key={label}
             className="px-6 md:px-10 py-8 flex flex-col gap-2"
             style={{
+              // On desktop (4-col): border on all except last item
+              // On mobile (2-col): border on odd-index items (left column) only
+              // CSS grid handles the layout; we apply borders via inline style
               borderRight:
-                i % 2 === 0 || i === 0
+                i < items.length - 1
                   ? `1px solid ${tokens.border}`
                   : undefined,
-              ...(i < items.length - 1
-                ? { borderRight: `1px solid ${tokens.border}` }
-                : {}),
             }}
           >
             <p
