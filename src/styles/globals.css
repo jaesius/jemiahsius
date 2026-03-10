@@ -15,7 +15,9 @@
   }
 
   body {
-    @apply bg-default-bg text-default-primary font-body;
+    @apply font-body;
+    background-color: var(--color-bg, #0A0A0B);
+    color: var(--color-primary, #F0EEF9);
     transition: background-color 0.6s ease, color 0.6s ease;
     overflow-x: hidden;
   }

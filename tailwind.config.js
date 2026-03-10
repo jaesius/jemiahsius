@@ -12,37 +12,6 @@ export default {
         // Mono: JetBrains Mono — for code/tech accents
         mono: ['JetBrains Mono', 'monospace'],
       },
-      colors: {
-        // ── DEFAULT WORLD ─────────────────────────────────
-        // Background layers
-        'default-bg':      '#0A0A0B',
-        'default-surface': '#111114',
-        'default-border':  '#1E1E24',
-        // Text
-        'default-primary':   '#F0EEF9',
-        'default-secondary': '#7B7A8E',
-        // Accent: electric indigo
-        'default-accent':    '#6C63FF',
-        'default-accent-dim':'#3D3780',
-
-        // ── PHOTOGRAPHY WORLD ────────────────────────────
-        'photo-bg':        '#080806',
-        'photo-surface':   '#110F0A',
-        'photo-border':    '#2A2418',
-        'photo-primary':   '#F5EDD8',
-        'photo-secondary': '#8A7E65',
-        'photo-accent':    '#E8A020',
-        'photo-accent-dim':'#6B4A0D',
-
-        // ── DESIGN WORLD ─────────────────────────────────
-        'design-bg':        '#0D080B',
-        'design-surface':   '#160E13',
-        'design-border':    '#2A1820',
-        'design-primary':   '#FAF0F4',
-        'design-secondary': '#8A6472',
-        'design-accent':    '#F05C78',
-        'design-accent-dim':'#6B1E2C',
-      },
       animation: {
         'fade-up':    'fadeUp 0.7s ease forwards',
         'fade-in':    'fadeIn 0.5s ease forwards',
