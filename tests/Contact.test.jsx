@@ -29,7 +29,7 @@ describe('Contact page', () => {
 
   it('has a submit button', () => {
     renderContact()
-    expect(screen.getByText('Send Message')).toBeInTheDocument()
+    expect(screen.getByText('Coming Soon')).toBeInTheDocument()
   })
 
   it('allows user to type in form fields', () => {

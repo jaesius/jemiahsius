@@ -24,34 +24,12 @@ const INITIAL_FORM = { name: '', email: '', subject: '', message: '' }
 export default function Contact() {
   const { tokens } = useTheme()
   const [form, setForm] = useState(INITIAL_FORM)
-  const [status, setStatus] = useState('idle') // idle | submitting | success | error
-
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  // ✏️ EDIT: Replace this with your form handler when ready
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    setStatus('submitting')
-
-    // ── Formspree example (uncomment and add your URL) ──
-    // try {
-    //   const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(form),
-    //   })
-    //   if (res.ok) { setStatus('success'); setForm(INITIAL_FORM) }
-    //   else setStatus('error')
-    // } catch {
-    //   setStatus('error')
-    // }
-
-    // Placeholder: simulate a delay then show success
-    await new Promise((r) => setTimeout(r, 1000))
-    setStatus('success')
-    setForm(INITIAL_FORM)
   }
 
   // Input + textarea shared style helper
@@ -90,11 +68,12 @@ export default function Contact() {
             {/* Name + Email row */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-2">
-                <label className="text-label opacity-40" style={{ color: tokens.primary }}>
+                <label htmlFor="name" className="text-label opacity-40" style={{ color: tokens.primary }}>
                   Name
                 </label>
                 <input
                   type="text"
+                  id="name"
                   name="name"
                   value={form.name}
                   onChange={handleChange}
@@ -105,11 +84,12 @@ export default function Contact() {
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="text-label opacity-40" style={{ color: tokens.primary }}>
+                <label htmlFor="email" className="text-label opacity-40" style={{ color: tokens.primary }}>
                   Email
                 </label>
                 <input
                   type="email"
+                  id="email"
                   name="email"
                   value={form.email}
                   onChange={handleChange}
@@ -123,11 +103,12 @@ export default function Contact() {
 
             {/* Subject */}
             <div className="flex flex-col gap-2">
-              <label className="text-label opacity-40" style={{ color: tokens.primary }}>
+              <label htmlFor="subject" className="text-label opacity-40" style={{ color: tokens.primary }}>
                 Subject
               </label>
               <input
                 type="text"
+                id="subject"
                 name="subject"
                 value={form.subject}
                 onChange={handleChange}
@@ -139,10 +120,11 @@ export default function Contact() {
 
             {/* Message */}
             <div className="flex flex-col gap-2">
-              <label className="text-label opacity-40" style={{ color: tokens.primary }}>
+              <label htmlFor="message" className="text-label opacity-40" style={{ color: tokens.primary }}>
                 Message
               </label>
               <textarea
+                id="message"
                 name="message"
                 value={form.message}
                 onChange={handleChange}
@@ -157,7 +139,7 @@ export default function Contact() {
             {/* Submit */}
             <motion.button
               type="submit"
-              disabled={status === 'submitting' || status === 'success'}
+              disabled
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
               className="w-full py-4 text-label font-bold tracking-widest transition-all duration-300 disabled:opacity-50"
@@ -166,11 +148,9 @@ export default function Contact() {
                 color: tokens.bg,
               }}
             >
-              {status === 'submitting' && 'Sending...'}
-              {status === 'success'    && 'Message sent ✓'}
-              {status === 'error'      && 'Something went wrong — try again'}
-              {status === 'idle'       && 'Send Message'}
+              Coming Soon
             </motion.button>
+            <p className="text-label opacity-30 mt-3 text-center" style={{ color: tokens.primary }}>Form handler coming soon.</p>
           </motion.form>
 
           {/* ── Right: Info ─────────────────────── */}

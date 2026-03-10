@@ -23,6 +23,7 @@
 import { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import content from '../content';
+import { EASE_OUT_EXPO } from '../utils/motion';
 
 // ── Hardcoded default world dark tokens ──────────────────
 // Mirrors WORLDS.default.dark in ThemeContext.jsx
@@ -58,7 +59,7 @@ export default function SiteLoader() {
       jemiahControls.start({
         opacity: 1,
         y: 0,
-        transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 0.35, ease: EASE_OUT_EXPO },
       });
 
       // SIUS follows 80ms later with the same motion
@@ -66,7 +67,7 @@ export default function SiteLoader() {
       siusControls.start({
         opacity: 1,
         y: 0,
-        transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 0.35, ease: EASE_OUT_EXPO },
       });
 
       // ── Phase 2: Accent flood + text inversion ────────────
@@ -113,7 +114,7 @@ export default function SiteLoader() {
 
     // Safety cleanup: always restore scroll if the component unmounts early
     return () => { document.body.style.overflow = ''; };
-  }, [skip]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [skip, overlayControls, jemiahControls, siusControls, floodControls]);
 
   // Already shown this session, or animation finished — nothing to render
   if (skip || done) return null;

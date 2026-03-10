@@ -184,6 +184,34 @@ const content = {
     design:      null,   // e.g. '/photos/card-design.jpg'
   },
 
+  // ── Marquee strip (Homepage) ────────────────────────────
+  marqueeItems: [
+    'Developer Relations',
+    '—',
+    'Technical Marketing',
+    '—',
+    'Photography',
+    '—',
+    'Design',
+    '—',
+    'Speaking',
+    '—',
+  ],
+
+  // ── About teaser (Homepage) ────────────────────────────
+  aboutTeaser: {
+    heading: 'Your headline here.\nSecond line here.',
+    body: 'A brief paragraph about yourself for the homepage teaser section.',
+  },
+
+  // ── Stats block (Homepage) ─────────────────────────────
+  stats: [
+    { value: '10+', label: 'Years experience' },
+    { value: '∞', label: 'Ideas in progress' },
+    { value: '3', label: 'Worlds on this site' },
+    { value: '1', label: 'Side project, always' },
+  ],
+
   // ── SEO / Meta ──────────────────────────────────────────
   meta: {
     siteUrl:     'https://yoursite.com',

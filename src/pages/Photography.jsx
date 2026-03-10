@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 import PageTransition from '../components/PageTransition'
 import content from '../content'
+import { EASE_OUT_EXPO } from '../utils/motion'
 
 // ✏️ EDIT: Update photography.grid in src/content.js
 const PHOTO_GRID = content.photography.grid
@@ -25,7 +26,7 @@ const container = {
 
 const photoItem = {
   hidden: { opacity: 0, y: 30 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE_OUT_EXPO } },
 }
 
 export default function Photography() {
