@@ -9,7 +9,7 @@
  */
 
 import { useState, useEffect } from 'react'
-import { NavLink, useNavigate, useLocation } from 'react-router-dom'
+import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 import ColorModeSwitcher from './ColorModeSwitcher'
@@ -36,20 +36,21 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
+    let ticking = false
     const onScroll = () => {
-      setScrolled(window.scrollY > 40)
-      setBelowFold(window.scrollY > window.innerHeight * 0.8)
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 40)
+        setBelowFold(window.scrollY > window.innerHeight * 0.8)
+        ticking = false
+      })
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => { setMobileOpen(false) }, [location.pathname])
-
-  const handleWorldLink = (worldId, to) => {
-    setWorld(worldId)
-    navigate(to)
-  }
 
   const handleWordmark = () => {
     setWorld('default')
@@ -113,9 +114,10 @@ export default function Nav() {
 
             {/* World-switching links */}
             {WORLD_LINKS.map(({ to, world: worldId, label }) => (
-              <button
+              <Link
                 key={to}
-                onClick={() => handleWorldLink(worldId, to)}
+                to={to}
+                onClick={() => setWorld(worldId)}
                 className={`text-label transition-all duration-200 relative ${
                   location.pathname === to ? 'opacity-100' : 'opacity-40 hover:opacity-80'
                 }`}
@@ -130,7 +132,7 @@ export default function Nav() {
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
-              </button>
+              </Link>
             ))}
 
             {/* Color mode toggle — slides in when scrolled past the hero */}
@@ -202,14 +204,15 @@ export default function Nav() {
             ))}
             <div className="h-px opacity-10" style={{ backgroundColor: tokens.primary }} />
             {WORLD_LINKS.map(({ to, world: worldId, label }) => (
-              <button
+              <Link
                 key={to}
-                onClick={() => handleWorldLink(worldId, to)}
+                to={to}
+                onClick={() => setWorld(worldId)}
                 className="font-display font-black uppercase text-2xl tracking-tight text-left opacity-70"
                 style={{ color: tokens.accent }}
               >
                 {label}
-              </button>
+              </Link>
             ))}
             <div className="h-px opacity-10" style={{ backgroundColor: tokens.primary }} />
             <div className="flex items-center gap-3">

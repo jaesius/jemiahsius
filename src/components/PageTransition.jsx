@@ -12,6 +12,7 @@
  */
 
 import { motion } from 'framer-motion'
+import { EASE_OUT_EXPO } from '../utils/motion'
 
 const variants = {
   initial:  { opacity: 0, y: 20 },
@@ -34,7 +35,7 @@ export default function PageTransition({ children, isWorld = false }) {
       exit="exit"
       transition={{
         duration: isWorld ? 0.6 : 0.4,
-        ease: [0.22, 1, 0.36, 1], // custom ease-out-quint
+        ease: EASE_OUT_EXPO, // custom ease-out-quint
       }}
     >
       {children}

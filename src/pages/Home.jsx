@@ -19,6 +19,7 @@ import FeaturedTalk from '../components/FeaturedTalk';
 import CurrentlyStrip from '../components/CurrentlyStrip';
 import WorldExplorer from '../components/WorldExplorer';
 import content from '../content';
+import { EASE_OUT_EXPO } from '../utils/motion';
 
 // ── Animation variants ───────────────────────────────────
 const container = {
@@ -33,7 +34,7 @@ const item = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.8, ease: EASE_OUT_EXPO },
   },
 };
 
@@ -62,7 +63,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, scale: 1.04 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.2, ease: EASE_OUT_EXPO }}
           className="absolute inset-y-0 right-0 w-[55%] md:w-[50%]"
         >
           {tokens.heroImage ? (
@@ -191,7 +192,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
         >
           <p
             className="text-label mb-6 opacity-40"
@@ -235,7 +236,7 @@ export default function Home() {
           transition={{
             duration: 0.7,
             delay: 0.15,
-            ease: [0.22, 1, 0.36, 1],
+            ease: EASE_OUT_EXPO,
           }}
           className="grid grid-cols-2 gap-px"
           style={{ backgroundColor: tokens.border }}

@@ -7,6 +7,7 @@
  * - Persistent Nav + Footer layout
  */
 
+import { lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { ThemeProvider } from './context/ThemeContext'
@@ -16,20 +17,21 @@ import Footer from './components/Footer'
 import WorldTransitionOverlay from './components/WorldTransitionOverlay'
 import SiteLoader from './components/SiteLoader'
 
-import Home        from './pages/Home'
-import About       from './pages/About'
-import Talks       from './pages/Talks'
-import Resume      from './pages/Resume'
-import Contact     from './pages/Contact'
-import Photography from './pages/Photography'
-import Design      from './pages/Design'
-import NotFound    from './pages/NotFound'
+const Home        = lazy(() => import('./pages/Home'))
+const About       = lazy(() => import('./pages/About'))
+const Talks       = lazy(() => import('./pages/Talks'))
+const Resume      = lazy(() => import('./pages/Resume'))
+const Contact     = lazy(() => import('./pages/Contact'))
+const Photography = lazy(() => import('./pages/Photography'))
+const Design      = lazy(() => import('./pages/Design'))
+const NotFound    = lazy(() => import('./pages/NotFound'))
 
 function AnimatedRoutes() {
   const location = useLocation()
 
   return (
     <AnimatePresence mode="wait">
+      <Suspense fallback={null}>
       <Routes location={location} key={location.pathname}>
         <Route path="/"            element={<Home />} />
         <Route path="/about"       element={<About />} />
@@ -40,6 +42,7 @@ function AnimatedRoutes() {
         <Route path="/design"      element={<Design />} />
         <Route path="*"            element={<NotFound />} />
       </Routes>
+      </Suspense>
     </AnimatePresence>
   )
 }

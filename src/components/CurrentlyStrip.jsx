@@ -8,6 +8,7 @@
 import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 import content from '../content';
+import { EASE_OUT_EXPO } from '../utils/motion';
 
 export default function CurrentlyStrip() {
   const { tokens } = useTheme();
@@ -18,7 +19,7 @@ export default function CurrentlyStrip() {
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
       className="border-y"
       style={{
         borderColor: tokens.border,
