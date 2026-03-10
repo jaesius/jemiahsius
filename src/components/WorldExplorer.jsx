@@ -53,8 +53,10 @@ export default function WorldExplorer() {
           };
 
           return (
-            <motion.div
+            <motion.button
               key={id}
+              type="button"
+              aria-label={`Enter ${title} world`}
               initial="cardResting"
               whileHover="cardHovered"
               onHoverStart={() => setHoveredWorld(id)}
@@ -66,7 +68,6 @@ export default function WorldExplorer() {
               className="relative w-full md:w-1/2 overflow-hidden"
               style={{
                 height: '520px',
-                cursor: 'pointer',
               }}
             >
               {/* Background: geometric pattern */}
@@ -207,7 +208,7 @@ export default function WorldExplorer() {
                   Enter →
                 </motion.p>
               </div>
-            </motion.div>
+            </motion.button>
           );
         })}
       </div>

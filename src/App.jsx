@@ -23,6 +23,7 @@ import Resume      from './pages/Resume'
 import Contact     from './pages/Contact'
 import Photography from './pages/Photography'
 import Design      from './pages/Design'
+import NotFound    from './pages/NotFound'
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -37,6 +38,7 @@ function AnimatedRoutes() {
         <Route path="/contact"     element={<Contact />} />
         <Route path="/photography" element={<Photography />} />
         <Route path="/design"      element={<Design />} />
+        <Route path="*"            element={<NotFound />} />
       </Routes>
     </AnimatePresence>
   )
